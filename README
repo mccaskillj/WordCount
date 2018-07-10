@@ -1,0 +1,102 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+Jordan McCaskill
+1722645
+CMPT360
+Assignment 1
+--------------------------------------------------------------------------------
+
+----------------------------------------------------------------------
+word_count
+----------------------------------------------------------------------
+This program is designed to take a text file input passed as an
+argument on the command line and parse the file to create a dictionary
+like structure containing all of the words in the document and the
+number of times that they occur.
+
+In parsing the file, all leading and trailing punctuation is stripped
+and any words with numbers or internal punctuation are rejected. The
+only two exceptions being words with internal "-" and "'".
+
+The words are stored in a simple hash style table with the index
+being the first letter of each word. The word lists are grown off
+of the initial header structure in alphabetical order.
+
+Usage: ./word_count <filename>
+
+makefile: make word_count
+
+The following files are used in creation of the word_count program:
+
+-------------
+word_count.c
+-------------
+This file holds all the code associated with the parsing, creation
+and deletion of the main list. This file contains the main program
+loop.
+
+-------------
+word_count.h
+-------------
+This file contains all of the oncludes and function prototypes for
+word_count.c.
+
+--------
+lists.c
+--------
+This file contains all of the code related to the creation, printing,
+and deletion of the linked lists. Contains the append function and a
+combined printing/deletion function.
+
+--------
+lists.h
+--------
+This file contains all of the includes, function prototypes and
+structs for the link list created by lists.c.
+
+
+----------------------------------------------------------------------
+http_server
+----------------------------------------------------------------------
+This program is designed to create a functioning single thread http
+server that responds on a specific port. The server is able to respond
+on any port but the default is set to 8888.
+
+In valgrind the there will be 10 bytes left unfree'd upon termination
+due to the program not having an exit condition.
+
+The code for the http server was found at:
+http://blog.abhijeetr.com/2010/04/very-simple-http-server-writen-in-c.html
+
+The following changes were made to the code:
+1) Removed the -r flag from the code
+2) Add the -v flag for verbose
+3) Remove the call to fork so that it becomes single channel
+4) Break the respond function into parts for fixing line lengths
+5) Added a function to differentiate between 404 and 403 errors
+6) Made strings and arrays in malloc'd arrays
+7) Replaced strcpy() with strncpy
+
+There are 2 flags which the program accepts:
+p <port> - which changes the port to the input port number
+v - which outputs verbose output for the user
+
+usage: ./http_server (-p #) (-v)
+
+makefile: make http_server
+
+The folowing files are used to create the http_server program:
+
+--------------
+http_server.c
+--------------
+This file contains all of the code to create, run, listen with and
+respond with the http_server.
+
+--------------
+http_server.h
+--------------
+This file contains all of the includes and function prototypes for
+http_server.c.
+
